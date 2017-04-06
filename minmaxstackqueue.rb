@@ -1,6 +1,6 @@
 require_relative 'mystack'
 
-class StackQueue
+class MinMaxStackQueue
   def initialize
     @store = MyStack.new
     @stack = MyStack.new
@@ -45,6 +45,6 @@ class StackQueue
   end
 
   def max
-    @store.max    
+    @store.max
   end
 end

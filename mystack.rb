@@ -22,8 +22,8 @@ class MyStack
       @max << el
       @min << el
     else
-      @max << el if el >= max.last
-      @min << el if el <= min.last
+      @max << el if el >= @max.last
+      @min << el if el <= @min.last
     end
 
     @store << el
