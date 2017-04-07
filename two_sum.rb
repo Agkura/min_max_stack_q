@@ -1,3 +1,6 @@
+require 'benchmark'
+include Benchmark
+
 arr = [0,1,5,7]
 
 def brute_two_sum(array, target)
@@ -51,7 +54,7 @@ end
 
 
 just_array = [1,2,3,4,5,6,7]
-target = 18
+# target = 18
 
 def brute_four_sum(array, target)
   array.each_with_index do |num, a|
@@ -61,7 +64,6 @@ def brute_four_sum(array, target)
         next if b == c || a == c
         (0...array.length).each_with_index do |integer, d|
           next if c == d || a == d || b == d
-          # p [a,b,c,d]
           return true if array[a] + array[b] + array[c] + array[d] == target
         end
       end
@@ -69,5 +71,15 @@ def brute_four_sum(array, target)
   end
   false
 end
-p brute_four_sum(just_array, target)
-p brute_four_sum(just_array, 2)
+# p brute_four_sum(just_array, target)
+# p brute_four_sum(just_array, 2)
+
+
+an_array = (1..1_000_000_000).to_a
+target = -1
+
+Benchmark.benchmark(CAPTION, 7, FORMAT, ">total:", ">avg:") do |x|
+  #tf = x.report("brute") {brute_four_sum(an_array,target)}
+  #tt = x.report("sorting") {sorting_two_sum(an_array,target)}
+  tu = x.report("hash") {hash_two_sum(an_array,target)}
+end
